@@ -16,6 +16,11 @@
                     <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
                 <button type="submit" class="btn btn-primary" @click.prevent="onsubmit">Submit</button>
+                <hr>
+                <button class="btn btn-primary" @click.prevent="fetchData">Get Data</button>
+                <ul class="list-group" style="margin-top: 1rem">
+                    <li class="list-group-item" v-for="u in users">{{ u.username }} – {{ u.email }}</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -28,14 +33,29 @@
                 user: {
                     username: '',
                     email: ''
-                }
+                },
+                users: []
             }
         },
         methods: {
             onsubmit() {
-                this.$http.post('your-firebase-url-here', this.user)
+                this.$http.post('url-here', this.user)
                         .then( response => {
                             console.log('Success');
+                        }, error => {
+                            console.log(error)
+                        });
+            },
+            fetchData() {
+                this.$http.get('url-here')
+                        .then( response => {
+                           return response.json()
+                        }).then( data => {
+                          const resArr = [];
+                          for (let key in data) {
+                              resArr.push(data[key]);
+                          }
+                          this.users = resArr;
                         });
             }
         }
