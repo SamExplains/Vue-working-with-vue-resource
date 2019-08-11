@@ -4,7 +4,6 @@
     <list default="true" id="cc9cb8d3-60c1-48bf-a449-3de69590ba5d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +50,7 @@
       <updated>1565406674230</updated>
       <workItem from="1565406677767" duration="2975000" />
       <workItem from="1565558418047" duration="104000" />
-      <workItem from="1565558533865" duration="1257000" />
+      <workItem from="1565558533865" duration="3035000" />
     </task>
     <servers />
   </component>

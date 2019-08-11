@@ -35,7 +35,8 @@
                     email: ''
                 },
                 users: [],
-                resource: {}
+                resource: {},
+                node: 'data',
             }
         },
         methods: {
@@ -47,24 +48,46 @@
                 //         }, error => {
                 //             console.log(error)
                 //         });
-                this.$resource.save({}, this.users); //sends post request to URL appended to Root URL and attach data
+                // this.$resource.save({}, this.users); //sends post request to URL appended to Root URL and attach data
+                this.$resource.saveAlt(this.users); //alternate custom save
             },
             fetchData() {
                 // this.$http.get('')
-                this.$http.get('data.json')
-                        .then( response => {
-                           return response.json()
-                        }).then( data => {
-                          const resArr = [];
-                          for (let key in data) {
-                              resArr.push(data[key]);
-                          }
-                          this.users = resArr;
-                        });
+                // this.$http.get('data.json')
+                //         .then( response => {
+                //            return response.json()
+                //         }).then( data => {
+                //           const resArr = [];
+                //           for (let key in data) {
+                //               resArr.push(data[key]);
+                //           }
+                //           this.users = resArr;
+                //         });
+
+                this.resource.getData({node: this.node})
+                    .then( response => {
+                       return response.json()
+                    }).then( data => {
+                      const resArr = [];
+                      for (let key in data) {
+                          resArr.push(data[key]);
+                      }
+                      this.users = resArr;
+                    });
             }
         },
         created() {
-            this.resource = this.$resource('data.json')
+            const customActions = {
+                saveAlt: {
+                    method: 'POST',
+                    url: 'alternative.json'
+                },
+                getData: {
+                    method: 'GET',
+                }
+            };
+            // this.resource = this.$resource('data.json', {}, customActions )
+            this.resource = this.$resource('{node}.json', {}, customActions )
         }
     }
 </script>
