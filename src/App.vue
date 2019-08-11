@@ -34,20 +34,24 @@
                     username: '',
                     email: ''
                 },
-                users: []
+                users: [],
+                resource: {}
             }
         },
         methods: {
             onsubmit() {
-                this.$http.post('url-here', this.user)
-                        .then( response => {
-                            console.log('Success');
-                        }, error => {
-                            console.log(error)
-                        });
+                // this.$http.post('', this.user)
+                // this.$http.post('data.json', this.user)
+                //         .then( response => {
+                //             console.log('Success');
+                //         }, error => {
+                //             console.log(error)
+                //         });
+                this.$resource.save({}, this.users); //sends post request to URL appended to Root URL and attach data
             },
             fetchData() {
-                this.$http.get('url-here')
+                // this.$http.get('')
+                this.$http.get('data.json')
                         .then( response => {
                            return response.json()
                         }).then( data => {
@@ -58,6 +62,9 @@
                           this.users = resArr;
                         });
             }
+        },
+        created() {
+            this.resource = this.$resource('data.json')
         }
     }
 </script>
